@@ -5,8 +5,8 @@ from getters import *
 summaryFilePath = "msd_summary_file.h5"
 separator = '*,*'
 
-k = 100 # 1000 for full dataset
-split = False
+k = 300 # 1000 for full dataset
+split = True
 
 if split:
   files = k
