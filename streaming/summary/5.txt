@@ -1,0 +1,10 @@
+SOIRTNX12AB018B41D*,*Pepe El Mañoso*,*Salsa Cubana Vol.6*,*Orquesta Sonara La Habana*,*0*,*209.50159*,*98.814*,*1*,*-7.576*,*4*,*0
+SOLGCKQ12A8AE47CFA*,*Acércate Más*,*Éxitos Del Romántico De Siempre*,*Leo Marini*,*0*,*152.68526*,*89.747*,*4*,*-13.675*,*5*,*1
+SOZOAEF12AB017F0A9*,*Mule Boogie*,*Country & Western*,*Sheb Wooley*,*1993*,*137.50812*,*89.839*,*4*,*-11.214*,*6*,*0
+SOHMYGC12A6D4FAC4B*,*Dancing In The Dark*,*The Look Of Love*,*Diana Krall*,*2001*,*349.98812*,*109.398*,*4*,*-15.698*,*0*,*1
+SOHSSPG12A8C144BE0*,*Mad About You*,*Change of Heart*,*Clifford T. Ward*,*2003*,*201.1424*,*114.493*,*4*,*-11.477*,*7*,*1
+SOCBSOR12A8C1314DD*,*Heartaches*,*Just Kiddin' Around*,*Ray Conniff;Billy Butterfield*,*0*,*130.0371*,*181.257*,*1*,*-8.014*,*4*,*1
+SOOKLXI12A8C142FB0*,*Pain Over Acceptance*,*Unforgivable*,*Weekend Nachos*,*0*,*113.37098*,*121.931*,*3*,*-4.715*,*9*,*0
+SOYMTVV12A58A7C2D6*,*Ships That Don't Come In*,*The Ultimate Hits*,*Joe Diffie*,*1992*,*224.46975*,*118.028*,*4*,*-8.835*,*8*,*1
+SODQHXQ12AB0189AE0*,*Saturday Night  (LP Version)*,*Rick Medlocke & Blackfoot*,*Blackfoot*,*0*,*232.82893*,*95.853*,*4*,*-9.313*,*2*,*1
+SOFSJXP12AB017E676*,*I Just Want To Be With You This Christmas*,*My Christmas*,*Katie Armiger*,*0*,*200.09751*,*75.507*,*4*,*-8.521*,*10*,*1

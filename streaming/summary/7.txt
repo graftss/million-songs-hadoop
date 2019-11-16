@@ -1,0 +1,10 @@
+SOYKRSW12AB018078B*,*Sitting In My Window (Finis Tasby BMI)*,*What My Blues Are All About*,*Finis Tasby*,*0*,*315.32363*,*191.869*,*3*,*-9.382*,*2*,*1
+SORASFZ12AB01828C7*,*Raid The Itch*,*Black Label #57*,*Ogris Debris*,*0*,*531.17342*,*126.017*,*4*,*-11.258*,*11*,*0
+SOVOIOQ12AC4688FAC*,*The Rest of the Night*,*The Wind*,*Warren Zevon*,*2003*,*279.30077*,*125.737*,*4*,*-6.772*,*7*,*1
+SOXAGQZ12AB018A089*,*Ride*,*Orion*,*Andrea Klas*,*0*,*241.78893*,*91.974*,*4*,*-9.089*,*0*,*1
+SOLFMLX12AB0186EB5*,*Passion Protein*,*This Is Our Art*,*The Soup Dragons*,*1988*,*322.71628*,*89.982*,*4*,*-7.889*,*9*,*1
+SOSNKHA12AB0185BD6*,*Redemption*,*Write This Down*,*Write This Down*,*2010*,*192.49587*,*213.979*,*4*,*-4.871*,*8*,*1
+SOLOUIH12AB018146C*,*Dame Tus  Besos*,*Radio Macandé*,*Radio Macandé*,*0*,*279.84934*,*120.013*,*4*,*-11.818*,*6*,*1
+SOKWWCO12AB0187D70*,*Don't Prolong the Agony (Bonus Track)*,*Touchpaper*,*Claire Hamill*,*0*,*225.95873*,*125.492*,*4*,*-8.988*,*2*,*1
+SODXEOD12AB018EC03*,*Dalny svet (bonus 2003)*,*Kruiz-1*,*Kruiz*,*0*,*253.23057*,*191.927*,*4*,*-5.943*,*2*,*1
+SONHPZT12AC90970C3*,*Alice in Wonderland: Act I: The Caucus Race*,*DAVIS_ C.: Alice in Wonderland [Ballet] (Prague City Philharmonic_ Davis)*,*Carl Davis*,*0*,*180.13995*,*123.172*,*4*,*-21.25*,*2*,*0

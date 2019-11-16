@@ -1,0 +1,11 @@
+song_id
+title
+release
+artist_name
+year
+duration
+tempo
+time_signature
+loudness
+key
+mode

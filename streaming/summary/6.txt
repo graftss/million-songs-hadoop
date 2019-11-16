@@ -1,0 +1,10 @@
+SOHGZWM12AAA8C86EA*,*On the Surface*,*Songs for the Incurable Heart*,*Stemm*,*2005*,*250.98404*,*135.598*,*4*,*-4.264*,*5*,*1
+SOLBDWO12AB0188CC2*,*Remember (Walking In The Sand)*,*Night In The Ruts*,*Aerosmith*,*1979*,*244.40118*,*101.028*,*3*,*-9.759*,*8*,*1
+SOUHTYT12AB0189D1C*,*Just Another Woman*,*Singin' The Blues*,*Hot Lips Page*,*0*,*194.29832*,*121.421*,*7*,*-20.896*,*10*,*0
+SOVUFFC12AC9E16242*,*untitled*,*Amaterasu*,*David Fridlund*,*2004*,*12.2771*,*0.0*,*1*,*-14.337*,*10*,*0
+SOEBDKM12AC4686D3A*,*Bakslag*,*Om Gaia*,*Kultiration*,*2004*,*152.24118*,*128.175*,*1*,*-6.768*,*2*,*1
+SOPJNRJ12A8C1461C4*,*The New Way*,*Radio Ixtlan*,*Ewigkeit*,*2004*,*300.72118*,*119.997*,*4*,*-5.036*,*5*,*1
+SOUVPJZ12AB018218C*,*Suffer*,*In My Own Cage*,*JOHN DOE*,*0*,*162.14159*,*99.968*,*4*,*-12.391*,*11*,*0
+SONUZSW12AAA15EA65*,*Cités dortoires (feat. 59 Grammes)*,*Rakailles 4*,*Alpha 5.20*,*0*,*350.56281*,*97.203*,*4*,*-7.05*,*1*,*1
+SOGBBEE12AB017ED6A*,*Bring It*,*Unspoken*,*Tonex*,*0*,*194.5073*,*140.025*,*5*,*-4.668*,*1*,*1
+SOPBCNI12AF729FE49*,*You And I*,*Shine Through The Stars*,*Chasen*,*2008*,*200.6722*,*154.004*,*4*,*-6.873*,*4*,*1
