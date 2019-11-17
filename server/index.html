@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  <button onclick="testQuery()">test query</button>
+  <script>
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(['full_key']),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    };
+
+    const testQuery = () => fetch('/api/query', options)
+      .then(res => res.text())
+      .then(console.log)
+  </script>
+</body>
+</html>
