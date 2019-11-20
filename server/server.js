@@ -1,7 +1,6 @@
 const path = require('path');
 const express = require('express');
-const { doQuery } = require('./query');
-
+const { doQuery, doSearch } = require('./query');
 
 const app = express();
 const port = 3000;
@@ -16,6 +15,18 @@ app.post('/api/query', (req, res) => {
     })
     .catch(e => {
       console.log('error in api call:', req.body);
+      console.log(e);
+    });
+});
+
+app.post('/api/search', (req, res) => {
+  doSearch(req.body)
+    .then(x => {
+      console.log('finished search: ', req.body);
+      res.send(x);
+    })
+    .catch(e => {
+      console.log('error in search:', req.body);
       console.log(e);
     });
 });
