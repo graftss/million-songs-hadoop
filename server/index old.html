@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  <button onclick="testQuery()">test query</button>
+  <button onclick="testSearch()">test search</button>
+  <script>
+    const makeOptions = body => ({
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const options = makeOptions(['full_key']);
+    const testQuery = () => fetch('/api/query', options)
+      .then(res => res.text())
+      .then(console.log);
+
+    const searchOptions = makeOptions({ title: "the", yearMin: "1998" });
+    const testSearch = () => fetch('/api/search', searchOptions)
+      .then(res => res.text())
+      .then(console.log);
+  </script>
+</body>
+</html>

@@ -20,6 +20,7 @@ app.post('/api/query', (req, res) => {
 });
 
 app.post('/api/search', (req, res) => {
+  console.log('searching')
   doSearch(req.body)
     .then(x => {
       console.log('finished search: ', req.body);

@@ -3,8 +3,9 @@ const path = require('path');
 const cp = require('child_process');
 
 // change these depending on environment
-const hadoopPath = '/hadoop';
-const hdfsInputPath = '/inputsmall';
+const hadoopPath = '~/Desktop/hadoop-2.10.0';
+const hdfsInputPath = '/input';
+// const hdfsInputPath = '/small-input';
 
 
 
