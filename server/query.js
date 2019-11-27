@@ -2,12 +2,18 @@ const fs = require('fs');
 const path = require('path');
 const cp = require('child_process');
 
-// change these depending on environment
-const hadoopPath = '~/Desktop/hadoop-2.10.0';
-const hdfsInputPath = '/input';
-// const hdfsInputPath = '/small-input';
+const onWindows = process.env.OS.includes('indows');
 
+let hadoopPath;
+let hdfsInputPath;
 
+if (!onWindows) {
+  hadoopPath = '~/Desktop/hadoop-2.10.0';
+  hdfsInputPath = '/input';
+} else {
+  hadoopPath = 'c:/hadoop';
+  hdfsInputPath = '/inputsmall';
+}
 
 const jobDir = path.join(__dirname, '../streaming');
 const paths = {
@@ -51,13 +57,16 @@ const doClean = () => doCommand(commands.clean())
     }
   });
 
-module.exports.doQuery = query => doClean()
-  .then(() => doCommand(commands.job(query)))
-  .then(() => doCommand(commands.getOutput()))
+module.exports.doQuery = query =>
+  doClean()
+    .then(() => doCommand(commands.job(query)))
+    .then(() => doCommand(commands.getOutput()))
 
-module.exports.doSearch = query => doClean()
-  .then(() => {
-    fs.writeFileSync(paths.searchJSON, JSON.stringify(query));
-    return doCommand(commands.search(paths.searchJSON))
-  })
-  .then(() => doCommand(commands.getOutput()));
+module.exports.doSearch = query =>
+  doClean()
+    .then(() => {
+      console.log('starting query: ', query);
+      fs.writeFileSync(paths.searchJSON, JSON.stringify(query));
+      return doCommand(commands.search(paths.searchJSON))
+    })
+    .then(() => doCommand(commands.getOutput()));

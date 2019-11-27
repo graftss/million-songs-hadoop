@@ -6,15 +6,16 @@ const app = express();
 const port = 3000;
 
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.post('/api/query', (req, res) => {
   doQuery(req.body)
     .then(x => {
-      console.log('finished api call: ', req.body);
+      console.log('finished query: ', req.body);
       res.send(x);
     })
     .catch(e => {
-      console.log('error in api call:', req.body);
+      console.log('error in query:', req.body);
       console.log(e);
     });
 });
@@ -32,8 +33,4 @@ app.post('/api/search', (req, res) => {
     });
 });
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
-
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(port, () => console.log(`Server listening on port ${port}`));

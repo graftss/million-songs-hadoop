@@ -13,6 +13,11 @@ keyMap = {
   '11': 'B',
 }
 
+modeMap = {
+  '0': 'minor',
+  '1': 'major',
+}
+
 def fullKeyStr(key, mode):
   keyStr = keyMap[key]
   modeStr = 'minor' if mode == '0' else 'major'
