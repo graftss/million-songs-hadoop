@@ -22,22 +22,28 @@ const paths = {
   mapperSearch: path.join(jobDir, 'mapper-search.py'),
   searchJSON: path.join(jobDir, 'searchjson.txt'),
   reducer: path.join(jobDir, 'reducer.py'),
+  results: path.join(jobDir, 'results.txt'),
   input: hdfsInputPath,
   output: '/output',
 };
 
-const hadoopCommand = (mapper, reducer, query) =>
+const defaultParams = {
+  reducers: 2,
+};
+
+const hadoopCommand = (mapper, reducer, query, params = defaultParams) =>
   `hadoop jar ${paths.jar} \
-     -mapper "python ${mapper} ${query}" \
-     -reducer "python ${reducer} ${query}" \
-     -input ${paths.input} -output ${paths.output} \
-     -file ${reducer} -file ${mapper}`;
+    -D mapreduce.job.reduces=${params.reducers || defaultParams.reducers} \
+    -mapper "python ${mapper} ${query}" \
+    -reducer "python ${reducer} ${query}" \
+    -input ${paths.input} -output ${paths.output} \
+    -file ${reducer} -file ${mapper}`;
 
 const commands = {
   job: query => hadoopCommand(paths.mapper, paths.reducer, query),
-  search: query => hadoopCommand(paths.mapperSearch, paths.reducer, query),
+  search: (query, params) => hadoopCommand(paths.mapperSearch, paths.reducer, query, params),
   clean: () => `hadoop fs -rm -r ${paths.output}`,
-  getOutput: () => `hadoop fs -cat ${paths.output}/*`
+  cacheOutput: () => `hadoop fs -cat ${paths.output}/* > ${paths.results}`,
 };
 
 const doCommand = command => new Promise((resolve, reject) => {
@@ -57,16 +63,67 @@ const doClean = () => doCommand(commands.clean())
     }
   });
 
+const getSliceIndices = params => {
+  let { max_results, results_page } = params;
+  max_results = parseInt(max_results);
+  results_page = parseInt(results_page);
+
+  const min = max_results * (results_page - 1);
+  return [min, min + max_results];
+}
+
 module.exports.doQuery = query =>
   doClean()
     .then(() => doCommand(commands.job(query)))
     .then(() => doCommand(commands.getOutput()))
 
-module.exports.doSearch = query =>
-  doClean()
+const compareQueries = (first, second) => {
+  for (const field in first) {
+    if (first[field] !== second[field]) return false;
+  }
+  if (Object.keys(first).length !== Object.keys(second).length) {
+    return false;
+  }
+  return true;
+};
+
+const getResultSlice = (params, cached) => {
+  const allResults = fs.readFileSync(paths.results).toString()
+    .split('\n');
+  const [minIndex, maxIndex] = getSliceIndices(params);
+
+  const searchSummary = {
+    maxResults: allResults.length,
+    minIndex,
+    maxIndex,
+    cached,
+  };
+
+  return {
+    results: allResults.slice(minIndex, maxIndex).join('\n'),
+    searchSummary,
+  };
+};
+
+const isRepeatedQuery = (query) => {
+  const lastQuery = JSON.parse(fs.readFileSync(paths.searchJSON));
+  console.log('last query: ', lastQuery);
+  return compareQueries(query, lastQuery);
+};
+
+module.exports.doSearch = (query, params) => {
+  if (isRepeatedQuery(query)) {
+    console.log('repeated query, using cached results:', query);
+    return Promise.resolve(getResultSlice(params, true));
+  }
+
+  return doClean()
     .then(() => {
       console.log('starting query: ', query);
+      console.log('params: ', params);
       fs.writeFileSync(paths.searchJSON, JSON.stringify(query));
-      return doCommand(commands.search(paths.searchJSON))
+      return doCommand(commands.search(paths.searchJSON, params))
     })
-    .then(() => doCommand(commands.getOutput()));
+    .then(() => doCommand(commands.cacheOutput()))
+    .then(() => getResultSlice(params, false));
+};

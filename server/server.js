@@ -21,11 +21,10 @@ app.post('/api/query', (req, res) => {
 });
 
 app.post('/api/search', (req, res) => {
-  console.log('searching')
-  doSearch(req.body)
+  doSearch(req.body.search, req.body.params)
     .then(x => {
       console.log('finished search: ', req.body);
-      res.send(x);
+      res.json(x);
     })
     .catch(e => {
       console.log('error in search:', req.body);
