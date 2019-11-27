@@ -5,7 +5,7 @@ from getters import *
 summaryFilePath = "msd_summary_file.h5"
 separator = '*,*'
 
-k = 300 # 1000 for full dataset
+k = 1 # 1000 for full dataset
 split = True
 
 if split:
@@ -16,29 +16,21 @@ else:
   perFile = k * k
 
 def songDataString(file, separator, index):
-  strList = []
-  strList.append(get_song_id(file, index))
-  strList.append(separator)
-  strList.append(get_title(file, index))
-  strList.append(separator)
-  strList.append(get_release(file, index))
-  strList.append(separator)
-  strList.append(get_artist_name(file, index))
-  strList.append(separator)
-  strList.append(str(get_year(file, index)))
-  strList.append(separator)
-  strList.append(str(get_duration(file, index)))
-  strList.append(separator)
-  strList.append(str(get_tempo(file, index)))
-  strList.append(separator)
-  strList.append(str(get_time_signature(file, index)))
-  strList.append(separator)
-  strList.append(str(get_loudness(file, index)))
-  strList.append(separator)
-  strList.append(str(get_key(file, index)))
-  strList.append(separator)
-  strList.append(str(get_mode(file, index)))
-  return ''.join(strList)
+  fields = [
+    get_song_id(file, index),
+    get_title(file, index),
+    get_release(file, index),
+    get_artist_name(file, index),
+    str(get_year(file, index)),
+    str(get_duration(file, index)),
+    str(get_tempo(file, index)),
+    str(get_time_signature(file, index)),
+    str(get_loudness(file, index)),
+    str(get_key(file, index)),
+    str(get_mode(file, index)),
+  ]
+
+  return separator.join(fields)
 
 def summaryOutPath(index):
   return os.path.join("summary", str(index) + ".txt")
