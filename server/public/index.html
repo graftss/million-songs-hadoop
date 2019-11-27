@@ -8,7 +8,7 @@
         color: orange;
     }
 
-    table {
+    .results {
       border-collapse: collapse;
     }
 
@@ -16,8 +16,17 @@
       border: 1px solid powderblue;
     }
 
-    td {
+    td.result {
       border: 1px solid powderblue;
+    }
+
+    input {
+      float: right;
+      max-width: 50%;
+    }
+
+    select {
+      float: right;
     }
 </style>
 </head>
@@ -26,53 +35,100 @@
     <h1>Million Song Search</h1>
 
     <br>
+    <fieldset>
+      <legend>Search parameters:</legend>
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <label> Reducers: </label>
+              <input id="reducers" type="number" value="2"></input>
+            </td>
+            <td>
+              <label> Max results: </label>
+              <input id="max_results" type="number" value="1000"></input>
+            </td>
+            <td>
+              <label> Page: </label>
+              <input id="results_page" type="number" value="1"></input>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </fieldset>
     <br>
       <fieldset>
       <legend>Search query:</legend>
       <p>
-        <label>Song title: </label>
-        <input id="title" type="text"></input>
+        <table>
+          <tbody>
+            <tr>
+              <td>
+                <label>Song title: </label>
+                <input id="title" type="text"></input>
+              </td>
+              <td>
+                <label>Artist: </label>
+                <input id="artist_name" type="text"></input>
+              </td>
+              <td>
+                <label>Album: </label>
+                <input id="release" type="text"></input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label>Released after year: </label>
+                <input id="year_min" type="text"></input>
+              </td>
+              <td>
+                <label>Released before year: </label>
+                <input id="year_max" type="text"></input>
+              </td>
+              <td>
+                <label>Key:</label>
+                <select id="key">
+                  <option value=""></option>
+                  <option value="C">C</option>
+                  <option value="C#">C#</option>
+                  <option value="D">D</option>
+                  <option value="Eb">Eb</option>
+                  <option value="E">E</option>
+                  <option value="F">F</option>
+                  <option value="F#">F#</option>
+                  <option value="G">G</option>
+                  <option value="Ab">Ab</option>
+                  <option value="A">A</option>
+                  <option value="Bb">Bb</option>
+                  <option value="B">B</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label>Longer than (seconds): </label>
+                <input id="duration_min" type="text"></input>
+              </td>
+              <td>
+                <label>Shorter than (seconds): </label>
+                <input id="duration_max" type="text"></input>
+              </td>
+              <td>
+                <label>Mode:</label>
+                <select id="mode">
+                  <option value=""></option>
+                  <option value="major">Major</option>
+                  <option value="minor">Minor</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
         <br>
-        <label>Artist: </label>
-        <input id="artist_name" type="text"></input>
         <br>
-        <label>Album: </label>
-        <input id="release" type="text"></input>
         <br>
-        <label>Released after year: </label>
-        <input id="year_min" type="text"></input>
-        <label>Released before year: </label>
-        <input id="year_max" type="text"></input>
-        <br>
-        <label>Longer than (seconds): </label>
-        <input id="duration_min" type="text"></input>
-        <label>Shorter than (seconds): </label>
-        <input id="duration_max" type="text"></input>
-        <br>
-        <label>Key:</label>
-        <select id="key">
-          <option value=""></option>
-          <option value="C">C</option>
-          <option value="C#">C#</option>
-          <option value="D">D</option>
-          <option value="Eb">Eb</option>
-          <option value="E">E</option>
-          <option value="F">F</option>
-          <option value="F#">F#</option>
-          <option value="G">G</option>
-          <option value="Ab">Ab</option>
-          <option value="A">A</option>
-          <option value="Bb">Bb</option>
-          <option value="B">B</option>
-        </select>
-        <label>Mode:</label>
-        <select id="mode">
-          <option value=""></option>
-          <option value="major">Major</option>
-          <option value="minor">Minor</option>
-        </select>
-        <br>
-        <input onclick="onClick()" type="submit" value="Search">
+        <button id="submit" onclick="onClick()" type="submit">Search</button>
       </p>
     <div id="summary"></div>
     </fieldset>

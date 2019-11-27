@@ -7,32 +7,32 @@ const makeOptions = body => ({
   },
 });
 
-const searchFields = [
-  'title',
-  'artist_name',
-  'release',
-  'year_min',
-  'year_max',
-  'duration_min',
-  'duration_max',
-  'key',
-  'mode',
-];
-
-const getQuery = () => searchFields.reduce((result, field) => {
+const assocField = (result, field) => {
   const value = document.getElementById(field).value;
   if (value !== '') result[field] = value;
   return result;
-}, {});
+};
 
-const getSearchOptions = () => makeOptions(getQuery());
+const searchFields = ['title', 'artist_name', 'release', 'year_min', 'year_max', 'duration_min', 'duration_max', 'key', 'mode'];
+const getSearch = () => searchFields.reduce(assocField, {});
+
+const paramFields = ['reducers', 'max_results', 'results_page'];
+const getParams = () => paramFields.reduce(assocField, {});
+
+const getSearchOptions = () => makeOptions({
+  search: getSearch(),
+  params: getParams(),
+});
 
 const separator = '*,*';
 const parseSearchResponse = res => res.split('\t')[0].split(separator);
 
 const requestSearch = () => fetch('/api/search', getSearchOptions())
-  .then(res => res.text())
-  .then(res => res.split('\n').map(parseSearchResponse));
+  .then(res => res.json())
+  .then(body => {
+    body.results = body.results.split('\n').map(parseSearchResponse)
+    return body;
+  });
 
 const responseFields = ['Song', 'Album', 'Artist', 'Year', 'Duration', 'Key'];
 const renderHeaderRow = () => `
@@ -40,7 +40,7 @@ const renderHeaderRow = () => `
 `;
 
 const renderRecordRow = record => `
-  <tr>${record.map(value => `<td>${value}</td>`).join('')}</tr>
+  <tr>${record.map(value => `<td class="result">${value}</td>`).join('')}</tr>
 `;
 
 const renderTable = records => `
@@ -51,21 +51,43 @@ const renderTable = records => `
 `;
 
 const renderSummary = summary => `
-  <span>Found <em>${summary.length}</em> results in <em>${summary.duration}</em> seconds.</span>
+  <span>
+    Displaying <em>${summary.displayed}</em>
+    of <em>${summary.maxResults}</em> results
+    (<em>${summary.minIndex + 1}</em> to
+    <em>${Math.min(summary.maxIndex + 1, summary.maxResults)}</em>).
+    Search completed in <em>${summary.duration}</em> seconds.
+    ${summary.cached ? '(cached)' : ''}
+  </span>
 `;
 
-const mockRequestSearch = () => new Promise(resolve => resolve(mockResponse));
+const mockRequestSearch = () => Promise.resolve(mockResponse);
+
+const searchButton = document.getElementById('submit');
+const disableSearch = () => {
+  searchButton.disabled = true;
+};
+const enableSearch = () => {
+  searchButton.disabled = false;
+};
+
 
 function onClick() {
   const startTime = new Date().getTime();
+  disableSearch();
   // mockRequestSearch()
   requestSearch()
-    .then((records) => {
-      document.getElementById('results').innerHTML = renderTable(records);
+    .then(({ results, searchSummary }) => {
+      enableSearch();
+      document.getElementById('results').innerHTML = renderTable(results);
 
       const summary = {
         duration: ((new Date().getTime()) - startTime) / 1000,
-        length: records.length,
+        displayed: results.length,
+        maxResults: searchSummary.maxResults,
+        minIndex: searchSummary.minIndex,
+        maxIndex: searchSummary.maxIndex,
+        cached: searchSummary.cached,
       };
 
       document.getElementById('summary').innerHTML = renderSummary(summary);
